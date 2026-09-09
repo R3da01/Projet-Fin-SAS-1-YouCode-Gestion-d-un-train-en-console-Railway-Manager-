@@ -1,3 +1,5 @@
+var prompt = require('prompt-sync')();
+
 const trips = [
     {
         id: 1,
@@ -180,4 +182,17 @@ const trips = [
         availableSeats: 50
     }
 ];
+
+const tickets = []
+
+
+
+function showTrips(trips) {
+  console.log("\n=== TRAJETS ===");
+  for (let trip of trips) {
+    console.log(`#${trip.id} ${trip.departure} → ${trip.destination} | ${trip.departureTime} - ${trip.arrivalTime} | ${trip.price} DH | Places: ${trip.availableSeats}`);
+  }
+}
+showTrips(trips)
+
 
