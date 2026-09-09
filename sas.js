@@ -196,3 +196,40 @@ function showTrips(trips) {
 showTrips(trips)
 
 
+
+function buyTicket(trips){
+  console.log("=== ACHETER UN TICKET ===");
+   let name = prompt("Nom du passager : ");
+  let id = Number(prompt("ID du trajet : "));
+  let trip = trips.find(trip => trip.id === id);
+    
+    if (!trip) {
+    console.log("Trajet introuvable.");
+    return;
+        }
+ if (trip.availableSeats === 0) {
+    console.log("Train complet.");
+    return;
+  }
+  const ticket = {
+    id: tickets.length + 1,
+    passengerName: name,
+    tripId: trip.id,
+    seatNumber: 51 - trip.availableSeats,
+    price: trip.price
+};
+tickets.push(ticket);
+trip.availableSeats--;
+            
+
+  console.log("Ticket acheté avec succès.");
+  console.log(`Ticket #${ticket.id}`);
+  console.log(`Passager : ${ticket.passengerName}`);
+  console.log(`Traget: ${trip.departure} → ${trip.destination}`)
+  console.log(`Place : ${ticket.seatNumber}`);
+  console.log(`Prix : ${ticket.price} DH`);
+
+        }
+buyTicket(trips)
+
+
