@@ -188,7 +188,7 @@ const tickets = []
 
 
 function showTrips(trips) {
-  console.log("\n=== TRAJETS ===");
+  console.log("=== TRAJETS ===");
   for (let trip of trips) {
     console.log(`#${trip.id} ${trip.departure} → ${trip.destination} | ${trip.departureTime} - ${trip.arrivalTime} | ${trip.price} DH | Places: ${trip.availableSeats}`);
   }
@@ -232,4 +232,38 @@ trip.availableSeats--;
         }
 buyTicket(trips)
 
+function showTickets() {
+
+    console.log("=== TICKETS ===");
+
+    if (tickets.length === 0) {
+        console.log("Aucun ticket enregistré.");
+        return;
+    }
+
+    for (let i = 0; i < tickets.length; i++) {
+
+        let ticket = tickets[i];
+
+        let trip = null;
+
+        for (let j = 0; j < trips.length; j++) {
+
+            if (trips[j].id === ticket.tripId) {
+                trip = trips[j];
+                break;
+            }
+        }
+
+        console.log("Ticket #" + ticket.id);
+        console.log("Passager : " + ticket.passengerName);
+        console.log("Trajet : " +
+            trip.departure + " → " +
+            trip.destination);
+        console.log("Place : " + ticket.seatNumber);
+        console.log("Prix : " + ticket.price + " DH");
+    }
+}
+
+showTickets(trips)
 
