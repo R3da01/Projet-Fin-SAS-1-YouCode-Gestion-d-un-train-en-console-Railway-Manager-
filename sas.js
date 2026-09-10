@@ -193,7 +193,7 @@ function showTrips(trips) {
     console.log(`#${trip.id} ${trip.departure} → ${trip.destination} | ${trip.departureTime} - ${trip.arrivalTime} | ${trip.price} DH | Places: ${trip.availableSeats}`);
   }
 }
-showTrips(trips)
+// showTrips(trips)
 
 
 
@@ -255,15 +255,66 @@ function showTickets() {
             }
         }
 
-        console.log("Ticket #" + ticket.id);
-        console.log("Passager : " + ticket.passengerName);
-        console.log("Trajet : " +
-            trip.departure + " → " +
-            trip.destination);
-        console.log("Place : " + ticket.seatNumber);
-        console.log("Prix : " + ticket.price + " DH");
+  console.log(`Ticket #${ticket.id}`);
+        console.log(`Passager : ${ticket.passengerName}`);
+        console.log(`Trajet : ${trip.departure} → ${trip.destination}`);
+        console.log(`Place : ${ticket.seatNumber}`);
+        console.log(`Prix : ${ticket.price} DH`);
+
     }
 }
 
+
 showTickets(trips)
+
+
+
+function cancelTicket() {
+
+    console.log("=== ANNULER UN TICKET ===");
+
+    let ticketId = Number(prompt("Identifiant du ticket : "));
+
+    let ticketIndex = -1;
+
+    for (let i = 0; i < tickets.length; i++) {
+
+        if (tickets[i].id === ticketId) {
+            ticketIndex = i;
+            break;
+        }
+    }
+
+    if (ticketIndex === -1) {
+        console.log("Ticket introuvable.");
+        return;
+    }
+
+    let ticket = tickets[ticketIndex];
+
+    let trip = null;
+
+    for (let i = 0; i < trips.length; i++) {
+
+        if (trips[i].id === ticket.tripId) {
+            trip = trips[i];
+            break;
+        }
+    }
+
+
+    tickets.splice(ticketIndex, 1);
+
+    trip.availableSeats++;
+
+    console.log("Ticket annulé avec succès.");
+}
+
+
+
+
+
+
+
+
 
