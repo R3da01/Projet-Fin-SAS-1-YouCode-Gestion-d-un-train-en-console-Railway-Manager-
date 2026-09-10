@@ -312,7 +312,46 @@ function cancelTicket() {
 
 
 
+function searchTicket() {
 
+    console.log("=== RECHERCHER UN TICKET ===");
+
+    let name = prompt("Nom du passager : ");
+
+    let found = false;
+
+    for (let i = 0; i < tickets.length; i++) {
+
+        if (
+            tickets[i].passengerName.toLowerCase() === name.toLowerCase()
+        ) {
+
+            let trip = null;
+
+            for (let j = 0; j < trips.length; j++) {
+
+                if (trips[j].id === tickets[i].tripId) {
+                    trip = trips[j];
+                    break;
+                }
+            }
+
+            console.log(`\nTicket #${tickets[i].id}`);
+            console.log(`Passager : ${tickets[i].passengerName}`);
+            console.log(`Trajet : ${trip.departure} → ${trip.destination}`);
+            console.log(`Place : ${tickets[i].seatNumber}`);
+            console.log(`Prix : ${tickets[i].price} DH`);
+
+            found = true;
+        }
+    }
+
+    if (found === false) {
+        console.log("Aucun ticket trouvé.");
+    }
+}
+
+searchTicket()
 
 
 
