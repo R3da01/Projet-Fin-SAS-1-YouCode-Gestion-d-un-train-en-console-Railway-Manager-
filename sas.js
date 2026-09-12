@@ -363,6 +363,7 @@ function filterTrips()
 
 function sortTrips()
  {  
+     console.log("=== TRAJETS TRIÉS PAR PRIX ===");
     for (let i = 0; i < trips.length - 1; i++) {
         for (let j = 0; j < trips.length - 1 - i; j++) 
             {
